@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EmotionLens — Real-Time Emotion Detection</title>
+    <meta name="description" content="Real-time facial emotion detection powered by deep learning. Detects 7 emotions from your webcam feed." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+    <!-- ── Animated background particles ──────────────────────── -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- ── Header ─────────────────────────────────────────────── -->
+    <header id="app-header">
+        <div class="header-left">
+            <h1>
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">Emotion<span class="accent">Lens</span></span>
+            </h1>
+            <p class="tagline">Real-time facial emotion detection powered by deep learning</p>
+        </div>
+        <div class="header-right">
+            <div class="live-badge" id="live-badge">
+                <span class="live-dot"></span>
+                <span>LIVE</span>
+            </div>
+            <div class="face-status" id="face-status">
+                <span class="face-icon">👤</span>
+                <span id="face-status-text">Searching…</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Main content ───────────────────────────────────────── -->
+    <main id="main-content">
+
+        <!-- Video panel -->
+        <section class="video-section" id="video-section">
+            <div class="video-wrapper" id="video-wrapper">
+                <img src="/video_feed" alt="Webcam Feed" id="video-feed" />
+                <div class="video-overlay-top">
+                    <span class="rec-indicator">● REC</span>
+                    <span class="timestamp" id="timestamp"></span>
+                </div>
+                <div class="video-overlay-bottom" id="video-overlay-bottom">
+                    <span class="detected-emotion-tag" id="overlay-emotion">—</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sidebar panel -->
+        <aside class="sidebar" id="sidebar">
+
+            <!-- Current emotion card -->
+            <div class="card emotion-card" id="emotion-card">
+                <div class="card-header">
+                    <span class="card-title">Detected Emotion</span>
+                    <span class="card-badge" id="emotion-badge">—</span>
+                </div>
+                <div class="emotion-display" id="emotion-display">
+                    <span class="emotion-emoji" id="emotion-emoji">😐</span>
+                    <span class="emotion-label" id="emotion-label">Neutral</span>
+                </div>
+            </div>
+
+            <!-- Confidence bars card -->
+            <div class="card confidence-card" id="confidence-card">
+                <div class="card-header">
+                    <span class="card-title">Confidence Scores</span>
+                </div>
+                <div class="confidence-bars" id="confidence-bars">
+                    <!-- filled by JS -->
+                </div>
+            </div>
+
+            <!-- Emotion history card -->
+            <div class="card history-card" id="history-card">
+                <div class="card-header">
+                    <span class="card-title">Emotion History</span>
+                    <button class="clear-btn" id="clear-history" title="Clear history">✕</button>
+                </div>
+                <ul class="history-list" id="history-list">
+                    <li class="history-empty">Waiting for detections…</li>
+                </ul>
+            </div>
+
+        </aside>
+
+    </main>
+
+    <!-- ── Footer ─────────────────────────────────────────────── -->
+    <footer id="app-footer">
+        <p>Built with <span class="heart">❤</span> using TensorFlow &amp; OpenCV</p>
+    </footer>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
