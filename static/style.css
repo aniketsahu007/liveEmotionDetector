@@ -1,9 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   EmotionLens — Stylesheet
-   Premium dark theme · Glassmorphism · Micro-animations
-   ═══════════════════════════════════════════════════════════════════════════ */
-
-/* ── Reset & Globals ──────────────────────────────────────────────────────── */
+ 
 *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -31,7 +26,7 @@
     --transition:   0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --font:         'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
-    /* emotion colours */
+ 
     --c-angry:     #ef4444;
     --c-disgust:   #84cc16;
     --c-fear:      #a855f7;
@@ -54,8 +49,7 @@ body {
     overflow-x: hidden;
     position: relative;
 }
-
-/* ── Background particles ─────────────────────────────────────────────────── */
+ 
 .bg-particles {
     position: fixed;
     inset: 0;
@@ -78,7 +72,7 @@ body {
     100% { transform: translateY(-10vh) scale(1); opacity: 0; }
 }
 
-/* ── Header ───────────────────────────────────────────────────────────────── */
+ 
 #app-header {
     position: sticky;
     top: 0;
@@ -132,7 +126,7 @@ body {
     gap: 16px;
 }
 
-/* Live badge */
+ 
 .live-badge {
     display: flex;
     align-items: center;
@@ -161,7 +155,7 @@ body {
     50%      { opacity: 0.4; transform: scale(0.7); }
 }
 
-/* Face status */
+ 
 .face-status {
     display: flex;
     align-items: center;
@@ -182,8 +176,7 @@ body {
 }
 
 .face-icon { font-size: 1rem; }
-
-/* ── Main layout ──────────────────────────────────────────────────────────── */
+ 
 #main-content {
     display: grid;
     grid-template-columns: 1fr 380px;
@@ -195,7 +188,7 @@ body {
     z-index: 1;
 }
 
-/* ── Video section ────────────────────────────────────────────────────────── */
+ 
 .video-section {
     display: flex;
     flex-direction: column;
@@ -281,8 +274,7 @@ body {
     backdrop-filter: blur(8px);
     transition: var(--transition);
 }
-
-/* ── Sidebar cards ────────────────────────────────────────────────────────── */
+ 
 .sidebar {
     display: flex;
     flex-direction: column;
@@ -333,7 +325,7 @@ body {
     letter-spacing: 0.8px;
 }
 
-/* ── Emotion display ──────────────────────────────────────────────────────── */
+ 
 .emotion-display {
     display: flex;
     flex-direction: column;
@@ -369,8 +361,7 @@ body {
     -webkit-text-fill-color: transparent;
     letter-spacing: -0.3px;
 }
-
-/* ── Confidence bars ──────────────────────────────────────────────────────── */
+ 
 .confidence-bars {
     display: flex;
     flex-direction: column;
@@ -451,7 +442,7 @@ body {
     color: var(--text-primary);
 }
 
-/* ── History ──────────────────────────────────────────────────────────────── */
+ 
 .history-list {
     list-style: none;
     display: flex;
@@ -542,9 +533,7 @@ body {
     border-color: rgba(239, 68, 68, 0.3);
     color: #ef4444;
     transform: rotate(90deg);
-}
-
-/* ── Footer ───────────────────────────────────────────────────────────────── */
+} 
 #app-footer {
     text-align: center;
     padding: 24px 32px;
@@ -569,7 +558,7 @@ body {
     56%      { transform: scale(1); }
 }
 
-/* ── Responsive ───────────────────────────────────────────────────────────── */
+                               
 @media (max-width: 960px) {
     #main-content {
         grid-template-columns: 1fr;
