@@ -1,7 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════════════════
-   EmotionLens — Client-side Script
-   Polls /emotion_data, updates UI, manages particles & history
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 
 const EMOJI_MAP = {
     angry:    '😠',
@@ -25,7 +22,7 @@ const EMOTION_COLORS = {
 
 const ORDERED_EMOTIONS = ['angry', 'disgust', 'fear', 'happy', 'neutral', 'sad', 'surprise'];
 
-// ── DOM refs ────────────────────────────────────────────────────────────────
+ 
 const emotionEmoji     = document.getElementById('emotion-emoji');
 const emotionLabel     = document.getElementById('emotion-label');
 const emotionBadge     = document.getElementById('emotion-badge');
@@ -42,7 +39,7 @@ const emotionCard      = document.getElementById('emotion-card');
 let lastEmotion = null;
 let localHistory = [];
 
-// ── Initialise confidence bars ──────────────────────────────────────────────
+ 
 function initConfidenceBars() {
     confidenceBars.innerHTML = '';
     ORDERED_EMOTIONS.forEach(em => {
@@ -59,7 +56,7 @@ function initConfidenceBars() {
     });
 }
 
-// ── Spawn background particles ──────────────────────────────────────────────
+ 
 function spawnParticles(count = 25) {
     for (let i = 0; i < count; i++) {
         const p = document.createElement('div');
@@ -83,7 +80,7 @@ function spawnParticles(count = 25) {
     }
 }
 
-// ── Timestamp updater ───────────────────────────────────────────────────────
+ 
 function updateTimestamp() {
     const now = new Date();
     timestampEl.textContent = now.toLocaleTimeString('en-GB', {
@@ -92,8 +89,7 @@ function updateTimestamp() {
         second: '2-digit'
     });
 }
-
-// ── Update UI from emotion data ─────────────────────────────────────────────
+ 
 function updateUI(data) {
     const { emotion, confidences, history, face_detected } = data;
 
@@ -108,19 +104,18 @@ function updateUI(data) {
 
     if (!face_detected) return;
 
-    // — Emotion display
+     
     if (emotion !== lastEmotion) {
         emotionEmoji.textContent = EMOJI_MAP[emotion] || '😐';
         emotionEmoji.style.animation = 'none';
-        // trigger reflow
+         
         void emotionEmoji.offsetWidth;
         emotionEmoji.style.animation = 'emoji-entrance 0.5s cubic-bezier(0.34,1.56,0.64,1)';
 
         emotionLabel.textContent = emotion;
         emotionBadge.textContent = emotion.toUpperCase();
         overlayEmotion.textContent = `${EMOJI_MAP[emotion]}  ${emotion.toUpperCase()}`;
-
-        // Update card border glow
+ 
         const glowColor = EMOTION_COLORS[emotion] || '#8b5cf6';
         emotionCard.style.borderColor = glowColor + '40';
         emotionCard.style.boxShadow = `0 8px 32px rgba(0,0,0,0.4), 0 0 20px ${glowColor}25`;
@@ -128,7 +123,7 @@ function updateUI(data) {
         lastEmotion = emotion;
     }
 
-    // — Confidence bars
+ 
     let maxVal = 0;
     let maxEm = '';
     ORDERED_EMOTIONS.forEach(em => {
@@ -146,10 +141,9 @@ function updateUI(data) {
             valEl.classList.toggle('highlight', em === maxEm);
         }
     });
-
-    // — History
+ 
     if (history && history.length > 0) {
-        // Only add new items
+ 
         const newItems = history.slice(localHistory.length);
         if (newItems.length > 0 || history.length < localHistory.length) {
             localHistory = history;
@@ -165,7 +159,7 @@ function renderHistory() {
     }
 
     historyList.innerHTML = '';
-    // show newest first
+     
     const reversed = [...localHistory].reverse();
     reversed.forEach(entry => {
         const li = document.createElement('li');
@@ -177,9 +171,7 @@ function renderHistory() {
         `;
         historyList.appendChild(li);
     });
-}
-
-// ── Polling ─────────────────────────────────────────────────────────────────
+} 
 async function pollEmotionData() {
     try {
         const res = await fetch('/emotion_data');
@@ -188,17 +180,15 @@ async function pollEmotionData() {
             updateUI(data);
         }
     } catch (err) {
-        // silently retry
+ 
     }
-}
-
-// ── Clear history ───────────────────────────────────────────────────────────
+} 
 clearHistoryBtn.addEventListener('click', () => {
     localHistory = [];
     renderHistory();
 });
 
-// ── Boot ────────────────────────────────────────────────────────────────────
+ 
 initConfidenceBars();
 spawnParticles(25);
 updateTimestamp();
